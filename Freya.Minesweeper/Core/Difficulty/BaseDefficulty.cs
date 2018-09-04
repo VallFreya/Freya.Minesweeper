@@ -8,24 +8,31 @@ namespace Freya.Minesweeper.Core.Difficulty
         {
         }
 
-        public BaseDefficulty(TypeOfDifficulty typeOfDifficulty, DimentionFieldBase field, int numberOfMine)
+        public BaseDefficulty(TypeOfDifficulty typeOfDifficulty, DimentionsFieldBase field, int numberOfMine)
         {
-
+            TypeOfDifficulty = typeOfDifficulty;
+            Field = field;
+            NumberOfMine = numberOfMine;
         }
 
         /// <summary>
         /// Сложность игры
         /// </summary>
-        public TypeOfDifficulty TypeOfDifficulty = TypeOfDifficulty.Easy;
+        private TypeOfDifficulty TypeOfDifficulty = TypeOfDifficulty.Easy;
 
         /// <summary>
         /// Свойства поля
         /// </summary>
-        public DimentionFieldBase Field = new SmallDimentionsField();
+        private DimentionsFieldBase Field = new SmallDimentionField();
 
         /// <summary>
         /// Количество мин
         /// </summary>
-        public int NumberOfMine = 10;
+        public int NumberOfMine { get; } = 10;
+        
+        public DimentionsFieldBase GetField()
+        {
+            return Field;
+        }
     }
 }

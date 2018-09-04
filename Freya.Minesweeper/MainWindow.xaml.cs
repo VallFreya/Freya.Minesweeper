@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Freya.Minesweeper.Logic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Freya.Minesweeper
 {
@@ -23,6 +11,8 @@ namespace Freya.Minesweeper
         public MainWindow()
         {
             InitializeComponent();
+            var field = CreatorField.Create();
+            var n = 0;
         }
     }
 }

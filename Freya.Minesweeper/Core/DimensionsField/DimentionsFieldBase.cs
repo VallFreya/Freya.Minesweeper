@@ -3,13 +3,13 @@
     /// <summary>
     /// Базовый класс описывающий свойсва поля
     /// </summary>
-    public abstract class DimentionFieldBase
+    public abstract class DimentionsFieldBase
     {
-        public DimentionFieldBase()
+        public DimentionsFieldBase()
         {
         }
 
-        public DimentionFieldBase(int horisontalNumbersOfCells, int verticalyNumberOfCells, TypeOfDimensionsField typeOfDimensionsField)
+        public DimentionsFieldBase(int horisontalNumbersOfCells, int verticalyNumberOfCells, TypeOfDimensionsField typeOfDimensionsField)
         {
             HorisontalNumbersOfCells = horisontalNumbersOfCells;
             VerticalyNumberOfCells = verticalyNumberOfCells;
@@ -24,11 +24,11 @@
         /// <summary>
         /// Количество ячеек по горизонтали
         /// </summary>
-        private int HorisontalNumbersOfCells = 9;
+        public int HorisontalNumbersOfCells { get; } = 9;
 
         /// <summary>
         /// Количество клеток по горизонтали
         /// </summary>
-        private int VerticalyNumberOfCells = 9;
+        public int VerticalyNumberOfCells { get;  } = 9;
     }
 }
