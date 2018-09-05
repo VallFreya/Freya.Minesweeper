@@ -14,7 +14,7 @@ namespace Freya.Minesweeper.Logic
             var listMine = new ListMine<CommonPlacementMine>(numberOfMine);
             while (filled < numberOfMine)
             {
-                int x = random.Next(0, horisontalNumbersOfCells); // брать где то размеры массива или прокидывать их из свойств
+                int x = random.Next(0, horisontalNumbersOfCells);
                 int y = random.Next(0, verticalyNumberOfCells);
                 if(field.GetValue(x, y) is null)    
                 {
