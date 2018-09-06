@@ -9,21 +9,6 @@ namespace Freya.Minesweeper.Draw
         {
             grid.Rows = field.GetLength(1);
             grid.Columns = field.GetLength(0);
-            //for (int i = 0; i < field.GetLength(1); i++)
-            //{
-            //    grid.RowDefinitions.Add(new RowDefinition()
-            //    {
-            //        Height = GridLength.Auto,
-            //    });
-            //}
-
-            //for (int j = 0; j < field.GetLength(1); j++)
-            //{
-            //    grid.ColumnDefinitions.Add(new ColumnDefinition()
-            //    {
-            //        Width = GridLength.Auto,
-            //    });
-            //}
 
             for (int x = 0; x < field.GetLength(0); x++)
             {
@@ -31,8 +16,8 @@ namespace Freya.Minesweeper.Draw
                 {
                     var button = new Button()
                     {
-                        Height = 50,
-                        Width = 50,
+                        Height = 30,
+                        Width = 30,
                         Content = $"{field.GetValue(x, y)}"
                     };
 
