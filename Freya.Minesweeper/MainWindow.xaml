@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Freya.Minesweeper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" 
+        Width="Auto" Height="Auto" SizeToContent="WidthAndHeight" d:DesignWidth="600" d:DesignHeight="323.5">
+    <Grid Name="mainGrid">
     </Grid>
 </Window>

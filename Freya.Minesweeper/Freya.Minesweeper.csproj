@@ -72,6 +72,7 @@
     <Compile Include="Core\TypeOfDimensionsField.cs" />
     <Compile Include="Core\TypeOfDifficulty.cs" />
     <Compile Include="Core\TypeOfMine.cs" />
+    <Compile Include="Draw\Drawer.cs" />
     <Compile Include="Logic\BaseWayPlacementMine.cs" />
     <Compile Include="Logic\CreatorField.cs" />
     <Compile Include="Logic\Interfaces\IMechanismFillingField.cs" />
@@ -84,6 +85,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

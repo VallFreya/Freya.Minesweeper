@@ -1,4 +1,5 @@
-﻿using Freya.Minesweeper.Logic;
+﻿using Freya.Minesweeper.Draw;
+using Freya.Minesweeper.Logic;
 using System.Windows;
 
 namespace Freya.Minesweeper
@@ -12,6 +13,8 @@ namespace Freya.Minesweeper
         {
             InitializeComponent();
             var field = CreatorField.Create();
+            new Drawer().Draw(mainGrid, field);
+            
             var n = 0;
         }
     }
