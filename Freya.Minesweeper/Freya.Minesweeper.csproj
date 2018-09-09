@@ -58,8 +58,8 @@
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\Field.cs" />
     <Compile Include="Core\Point.cs" />
+    <Compile Include="CustomUIElement\MineButton.cs" />
     <Compile Include="Logic\SetterCountMine.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

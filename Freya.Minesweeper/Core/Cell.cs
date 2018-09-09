@@ -26,5 +26,15 @@ namespace Freya.Minesweeper.Core
         /// Количество мин вокруг ячейки
         /// </summary>
         public int CountMineAround { get; private set; }
+
+        /// <summary>
+        /// Свойство показа данной ячейки
+        /// </summary>
+        public bool IsShow { get; set; }
+
+        public void SetShowForTrue()
+        {
+            IsShow = true;
+        }
     }
 }

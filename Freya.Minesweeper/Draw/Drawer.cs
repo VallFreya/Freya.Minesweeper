@@ -1,4 +1,6 @@
 ﻿using Freya.Minesweeper.Core;
+using Freya.Minesweeper.Core.Mines;
+using Freya.Minesweeper.CustomUIElement;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +12,7 @@ namespace Freya.Minesweeper.Draw
     {
         public static void Draw(UniformGrid grid, Field field, RoutedEventHandler clickMethod)
         {
+            grid.Children.Clear();
             grid.Rows = field.Cells.GetLength(1);
             grid.Columns = field.Cells.GetLength(0);
 
@@ -17,11 +20,26 @@ namespace Freya.Minesweeper.Draw
             {
                 for (int y = 0; y < field.Cells.GetLength(1); y++)
                 {
-                    var button = new Button()
+                    var cell = field.Cells[x, y];
+                    var button = new MineButton()
                     {
                         Height = 30,
-                        Width = 30
+                        Width = 30,
+                        X = x,
+                        Y = y
                     };
+
+                    if(cell.IsShow)
+                    {
+                        if(cell.Mine is MineBase)
+                        {
+                            button.Content = "*";
+                        }
+                        else
+                        {
+                            button.Content = cell.CountMineAround.ToString();
+                        }
+                    }
 
                     button.Click += clickMethod;
                     grid.Children.Add(button);
