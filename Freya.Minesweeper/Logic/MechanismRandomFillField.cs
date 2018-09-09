@@ -1,4 +1,5 @@
-﻿using Freya.Minesweeper.Logic.Interfaces;
+﻿using Freya.Minesweeper.Core;
+using Freya.Minesweeper.Logic.Interfaces;
 using Freya.Minesweeper.Logic.WayPlacementMine;
 using System;
 
@@ -6,9 +7,9 @@ namespace Freya.Minesweeper.Logic
 {
     public class MechanismRandomFillField : IMechanismFillingField
     {
-        public int?[,] Fill(int numberOfMine, int horisontalNumbersOfCells, int verticalyNumberOfCells)
+        public Field Fill(int numberOfMine, int horisontalNumbersOfCells, int verticalyNumberOfCells)
         {
-            var field = new int?[horisontalNumbersOfCells, verticalyNumberOfCells];
+            var field = new Field(horisontalNumbersOfCells, verticalyNumberOfCells);
             var random = new Random();
             int filled = 0;
             var listMine = new ListMine<CommonPlacementMine>(numberOfMine);
@@ -16,9 +17,10 @@ namespace Freya.Minesweeper.Logic
             {
                 int x = random.Next(0, horisontalNumbersOfCells);
                 int y = random.Next(0, verticalyNumberOfCells);
-                if(field.GetValue(x, y) is null)    
+                var q = field.Cells.GetValue(x, y);
+                if (field.Cells.GetValue(x, y) is null)    
                 {
-                    field.SetValue((int)listMine.Next().TypeOfMine, x, y);
+                    field.Cells[x, y] = new Cell(listMine.Next(), x, y);
                     filled++;
                 }
             }

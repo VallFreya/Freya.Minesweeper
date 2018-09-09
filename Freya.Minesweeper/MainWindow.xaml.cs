@@ -13,9 +13,12 @@ namespace Freya.Minesweeper
         {
             InitializeComponent();
             var field = CreatorField.Create();
-            new Drawer().Draw(mainGrid, field);
-            
-            var n = 0;
+            Drawer.Draw(mainGrid, field, Click);
+        }
+
+        private void Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Привет");
         }
     }
 }
