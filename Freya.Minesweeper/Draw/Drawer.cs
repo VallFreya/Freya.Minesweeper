@@ -37,7 +37,7 @@ namespace Freya.Minesweeper.Draw
                         }
                         else
                         {
-                            button.Content = cell.CountMineAround.ToString();
+                            button.Content = cell.CountMineAround == 0 ? "" : cell.CountMineAround.ToString();
                         }
                     }
 

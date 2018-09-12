@@ -7,6 +7,13 @@ namespace Freya.Minesweeper.Core
     /// </summary>
     public class Cell : Point
     {
+        public Cell(Cell cell) : base(cell.X, cell.Y)
+        {
+            Mine = cell.Mine;
+            CountMineAround = cell.CountMineAround;
+            IsShow = cell.IsShow;
+        }
+
         public Cell(MineBase mine, int x, int y) : base(x, y)
         {
             Mine = mine;

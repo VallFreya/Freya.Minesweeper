@@ -14,16 +14,21 @@
         /// <summary>
         /// Горизонтальная ось
         /// </summary>
-        private int X { get; set; }
+        public int X { get; private set; }
 
         /// <summary>
         /// Вертикальная ось
         /// </summary>
-        private int Y { get; set; }
+        public int Y { get; private set; }
 
-        public Point Get()
+        public void SetX(int x)
         {
-            return this;
+            X = x;
+        }
+
+        public void SetY(int y)
+        {
+            Y = y;
         }
 
         public override string ToString()
