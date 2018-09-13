@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Freya.Minesweeper.Core.Mines;
+using System.Collections.Generic;
 
 namespace Freya.Minesweeper.Core
 {
@@ -16,6 +17,20 @@ namespace Freya.Minesweeper.Core
         /// Массив ячеек, описывающих поле
         /// </summary>
         public Cell[,] Cells { get; set; }
+
+        public void ShowAllMine()
+        {
+            for (var x = 0; x < Cells.GetLength(0); x++)
+            {
+                for (int y = 0; y < Cells.GetLength(1); y++)
+                {
+                    if (Cells[x, y].Mine is MineBase)
+                    {
+                        Cells[x, y].SetShowForTrue();
+                    }
+                }
+            }
+        }
 
         public static IEnumerable<Cell> GetAllCellsAround(Field field, Cell cell)
         {

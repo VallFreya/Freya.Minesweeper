@@ -31,7 +31,21 @@ namespace Freya.Minesweeper
 
             if(field.Cells[button.X, button.Y].Mine is MineBase)
             {
-                MessageBox.Show("GameOver");
+                field.ShowAllMine();
+                Drawer.Draw(mainGrid, field, Click);
+                MessageBoxResult messageBox = MessageBox.Show("Игра окончена. Начать сначала? Нет - выйти из игры", "Конец игры", MessageBoxButton.YesNo);
+                switch (messageBox)
+                {
+                    case MessageBoxResult.Yes:
+                        field = CreatorField.Create();
+                        Resources.Remove("field");
+                        Resources.Add("field", field);
+                        Drawer.Draw(mainGrid, field, Click);
+                        return;
+                    case MessageBoxResult.No:
+                        Close();
+                        break;
+                }
             }
 
             while (listForOpen.Count != 0)

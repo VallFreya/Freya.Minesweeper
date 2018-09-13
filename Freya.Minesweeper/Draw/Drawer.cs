@@ -5,6 +5,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Freya.Minesweeper.Draw
 {
@@ -34,10 +35,12 @@ namespace Freya.Minesweeper.Draw
                         if(cell.Mine is MineBase)
                         {
                             button.Content = "*";
+                            button.Background = Brushes.IndianRed;
                         }
                         else
                         {
                             button.Content = cell.CountMineAround == 0 ? "" : cell.CountMineAround.ToString();
+                            button.Background = Brushes.Gray;
                         }
                     }
 
