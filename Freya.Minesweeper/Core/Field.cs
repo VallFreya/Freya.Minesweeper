@@ -8,9 +8,12 @@ namespace Freya.Minesweeper.Core
     /// </summary>
     public class Field
     {
+        /*Перенести создание поля в этот класс или же...*/
         public Field(int horisontalNumbersOfCells, int verticalyNumberOfCells)
         {
             Cells = new Cell[horisontalNumbersOfCells, verticalyNumberOfCells];
+            VerticalCount = verticalyNumberOfCells;
+            HorizontalCount = horisontalNumbersOfCells;
         }
 
         /// <summary>
@@ -18,37 +21,65 @@ namespace Freya.Minesweeper.Core
         /// </summary>
         public Cell[,] Cells { get; set; }
 
-        public void ShowAllMine()
+        public int VerticalCount { get; }
+
+        public int HorizontalCount { get; }
+
+        public bool IsOutside(Cell cell)
         {
-            for (var x = 0; x < Cells.GetLength(0); x++)
+            if (cell.X < 0 || cell.Y < 0)
             {
-                for (int y = 0; y < Cells.GetLength(1); y++)
+                return true;
+            }
+
+            if (cell.X >= HorizontalCount || cell.Y >= VerticalCount)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void ShowAllMines()
+        {
+            var allCells = GetAllCells();
+            foreach (var cell in allCells)
+            {
+                if (cell.Mine is MineBase)
                 {
-                    if (Cells[x, y].Mine is MineBase)
-                    {
-                        Cells[x, y].SetShowForTrue();
-                    }
+                    cell.Show();
                 }
             }
         }
 
-        public static IEnumerable<Cell> GetAllCellsAround(Field field, Cell cell)
+        public IEnumerable<Cell> GetAllCellsAround(Cell cell)
         {
-            for(int x = -1; x <= 1; x++)
+            for (int x = -1; x <= 1; x++)
             {
-                for(int y = -1; y <= 1; y++)
+                for (int y = -1; y <= 1; y++)
                 {
                     if (cell.X + x < 0 || cell.Y + y < 0)
                     {
                         continue;
                     }
 
-                    if(cell.X + x >= field.Cells.GetLength(0) || cell.Y + y >= field.Cells.GetLength(1))
+                    if (cell.X + x >= HorizontalCount || cell.Y + y >= VerticalCount)
                     {
                         continue;
                     }
-                    
-                    yield return field.Cells[cell.X + x, cell.Y + y];
+
+                    yield return Cells[cell.X + x, cell.Y + y];
+                }
+            }
+        }
+
+        public IEnumerable<Cell> GetAllCells()
+        {
+            for (var x = 0; x < HorizontalCount; x++)
+            {
+                for (int y = 0; y < VerticalCount; y++)
+                {
+                    yield return Cells[x, y];
                 }
             }
         }

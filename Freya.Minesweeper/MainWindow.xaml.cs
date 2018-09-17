@@ -26,12 +26,10 @@ namespace Freya.Minesweeper
         {
             var button = sender as MineButton;
             var field = TryFindResource("field") as Field;
-            var listForOpen = new List<Cell>();
-            listForOpen.Add(field.Cells[button.X, button.Y]);
-
-            if(field.Cells[button.X, button.Y].Mine is MineBase)
+            
+            if (field.Cells[button.X, button.Y].Mine is MineBase)
             {
-                field.ShowAllMine();
+                field.ShowAllMines();
                 Drawer.Draw(mainGrid, field, Click);
                 MessageBoxResult messageBox = MessageBox.Show("Игра окончена. Начать сначала? Нет - выйти из игры", "Конец игры", MessageBoxButton.YesNo);
                 switch (messageBox)
@@ -44,9 +42,14 @@ namespace Freya.Minesweeper
                         return;
                     case MessageBoxResult.No:
                         Close();
-                        break;
+                        return;
                 }
             }
+
+            var listForOpen = new List<Cell>
+            {
+                field.Cells[button.X, button.Y]
+            };
 
             while (listForOpen.Count != 0)
             {
@@ -55,11 +58,12 @@ namespace Freya.Minesweeper
                 int y = cell.Y;
                 if(cell.CountMineAround == 0 || cell.Mine is MineBase)
                 {
-                    listForOpen.AddRange(Field.GetAllCellsAround(field, cell)
+                    listForOpen.AddRange(field.GetAllCellsAround(cell)
                         .Where(c => c.IsShow == false &&
                                     c.Mine is null));
                 }
-                field.Cells[x, y].SetShowForTrue();
+
+                field.Cells[x, y].Show();
                 listForOpen.Remove(field.Cells[x, y]);
             }
             

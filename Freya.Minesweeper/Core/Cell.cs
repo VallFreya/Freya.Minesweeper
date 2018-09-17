@@ -7,6 +7,10 @@ namespace Freya.Minesweeper.Core
     /// </summary>
     public class Cell : Point
     {
+        public Cell(int x, int y) : base(x, y)
+        {
+        }
+
         public Cell(Cell cell) : base(cell.X, cell.Y)
         {
             Mine = cell.Mine;
@@ -14,14 +18,16 @@ namespace Freya.Minesweeper.Core
             IsShow = cell.IsShow;
         }
 
-        public Cell(MineBase mine, int x, int y) : base(x, y)
+        public Cell SetMine(MineBase mine)
         {
             Mine = mine;
+            return this;
         }
 
-        public Cell(int countMineAround, int x, int y): base(x, y)
+        public Cell SetCountMineAround(int countMineAround)
         {
             CountMineAround = countMineAround;
+            return this;
         }
 
         /// <summary>
@@ -39,7 +45,7 @@ namespace Freya.Minesweeper.Core
         /// </summary>
         public bool IsShow { get; set; }
 
-        public void SetShowForTrue()
+        public void Show()
         {
             IsShow = true;
         }
