@@ -16,7 +16,7 @@ namespace Freya.Minesweeper.Logic
             {
                 for(int y = 0; y < field.VerticalCount; y++)
                 {
-                    field.Cells[x, y] = new Cell(x, y);
+                    field.SetCell(new Cell(x, y));
                 }
             }
 
@@ -25,9 +25,9 @@ namespace Freya.Minesweeper.Logic
             {
                 int x = random.Next(0, horisontalNumbersOfCells);
                 int y = random.Next(0, verticalyNumberOfCells);
-                if (field.Cells[x, y].Mine is null)    
+                if (field.GetCell(x, y).Mine is null)    
                 {
-                    field.Cells[x, y] = field.Cells[x, y].SetMine(listMine.Next());
+                    field.SetCell(field.GetCell(x, y).SetMine(listMine.Next()));
                     filled++;
                 }
             }

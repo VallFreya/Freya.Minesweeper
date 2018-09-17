@@ -14,14 +14,14 @@ namespace Freya.Minesweeper.Draw
         public static void Draw(UniformGrid grid, Field field, RoutedEventHandler clickMethod)
         {
             grid.Children.Clear();
-            grid.Rows = field.Cells.GetLength(1);
-            grid.Columns = field.Cells.GetLength(0);
+            grid.Rows = field.VerticalCount;
+            grid.Columns = field.HorizontalCount;
 
-            for (int x = 0; x < field.Cells.GetLength(0); x++)
+            for (int x = 0; x < field.HorizontalCount; x++)
             {
-                for (int y = 0; y < field.Cells.GetLength(1); y++)
+                for (int y = 0; y < field.VerticalCount; y++)
                 {
-                    var cell = field.Cells[x, y];
+                    var cell = field.GetCell(x, y);
                     var button = new MineButton()
                     {
                         Height = 30,

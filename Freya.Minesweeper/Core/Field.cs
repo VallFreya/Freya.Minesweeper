@@ -1,5 +1,7 @@
 ﻿using Freya.Minesweeper.Core.Mines;
+using Freya.Minesweeper.CustomUIElement;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Freya.Minesweeper.Core
 {
@@ -19,7 +21,22 @@ namespace Freya.Minesweeper.Core
         /// <summary>
         /// Массив ячеек, описывающих поле
         /// </summary>
-        public Cell[,] Cells { get; set; }
+        private Cell[,] Cells { get; set; }
+
+        public void SetCell(Cell cell)
+        {
+            Cells[cell.X, cell.Y] = cell;
+        }
+
+        public Cell GetCell(int x, int y)
+        {
+            if(IsOutside(new Cell(x, y)))
+            {
+                return null;
+            }
+
+            return Cells[x, y];
+        }
 
         public int VerticalCount { get; }
 
@@ -58,17 +75,13 @@ namespace Freya.Minesweeper.Core
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if (cell.X + x < 0 || cell.Y + y < 0)
+                    var cellAround = GetCell(cell.X + x, cell.Y + y);
+                    if (cellAround is null)
                     {
                         continue;
                     }
 
-                    if (cell.X + x >= HorizontalCount || cell.Y + y >= VerticalCount)
-                    {
-                        continue;
-                    }
-
-                    yield return Cells[cell.X + x, cell.Y + y];
+                    yield return cellAround;
                 }
             }
         }
@@ -79,8 +92,32 @@ namespace Freya.Minesweeper.Core
             {
                 for (int y = 0; y < VerticalCount; y++)
                 {
-                    yield return Cells[x, y];
+                    yield return GetCell(x, y);
                 }
+            }
+        }
+
+        public void ShowAllEmptyCells(MineButton button)
+        {
+            var listForOpen = new List<Cell>
+            {
+                GetCell(button.X, button.Y)
+            };
+
+            while (listForOpen.Count != 0)
+            {
+                var cell = listForOpen.First();
+                int x = cell.X;
+                int y = cell.Y;
+                if (cell.CountMineAround == 0 || cell.Mine is MineBase)
+                {
+                    listForOpen.AddRange(GetAllCellsAround(cell)
+                        .Where(c => c.IsShow == false &&
+                                    c.Mine is null));
+                }
+
+                cell.Show();
+                listForOpen.Remove(cell);
             }
         }
     }
