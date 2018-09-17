@@ -5,13 +5,14 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Freya.Minesweeper.Draw
 {
     public class Drawer
     {
-        public static void Draw(UniformGrid grid, Field field, RoutedEventHandler clickMethod)
+        public static void Draw(UniformGrid grid, Field field, RoutedEventHandler clickMethod, MouseButtonEventHandler rightClickMethod)
         {
             grid.Children.Clear();
             grid.Rows = field.VerticalCount;
@@ -44,7 +45,13 @@ namespace Freya.Minesweeper.Draw
                         }
                     }
 
+                    if(cell.Flag is Flag.Flag)
+                    {
+                        button.Content = "!";
+                    }
+
                     button.Click += clickMethod;
+                    button.PreviewMouseRightButtonDown += rightClickMethod;
                     grid.Children.Add(button);
 
                     Grid.SetRow(button, y + 1);

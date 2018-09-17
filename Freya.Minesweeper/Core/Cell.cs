@@ -45,9 +45,24 @@ namespace Freya.Minesweeper.Core
         /// </summary>
         public bool IsShow { get; set; }
 
+        /// <summary>
+        /// Пометка на клетке (Флаг, знак вопроса)
+        /// </summary>
+        public Flag Flag { get; private set; } = Flag.Empty;
+
         public void Show()
         {
             IsShow = true;
+        }
+
+        public void SetFlag()
+        {
+            Flag = Flag.Flag;
+        }
+
+        public void SetEmptyFlag()
+        {
+            Flag = Flag.Empty;
         }
     }
 }
