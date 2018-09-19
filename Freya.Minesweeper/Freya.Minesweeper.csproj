@@ -71,8 +71,8 @@
     </Compile>
     <Compile Include="Core\Defficulty\BaseDefficulty.cs" />
     <Compile Include="Core\Defficulty\EasyDefficulty.cs" />
-    <Compile Include="Core\DimensionsField\DimentionsFieldBase.cs" />
-    <Compile Include="Core\DimensionsField\SmallDimentionField.cs" />
+    <Compile Include="Core\DimentionsField\DimentionsFieldBase.cs" />
+    <Compile Include="Core\DimentionsField\SmallDimentionField.cs" />
     <Compile Include="Core\Mines\MineBase.cs" />
     <Compile Include="Core\Mines\CommonMine.cs" />
     <Compile Include="Core\TypeOfDimensionsField.cs" />

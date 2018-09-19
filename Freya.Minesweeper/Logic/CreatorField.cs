@@ -1,6 +1,6 @@
 ﻿using Freya.Minesweeper.Core;
 using Freya.Minesweeper.Core.Defficulty;
-using Freya.Minesweeper.Core.DimensionsField;
+using Freya.Minesweeper.Core.DimentionsField;
 
 namespace Freya.Minesweeper.Logic
 {

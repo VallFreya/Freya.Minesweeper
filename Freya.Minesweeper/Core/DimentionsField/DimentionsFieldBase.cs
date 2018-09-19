@@ -1,4 +1,4 @@
-﻿namespace Freya.Minesweeper.Core.DimensionsField
+﻿namespace Freya.Minesweeper.Core.DimentionsField
 {
     /// <summary>
     /// Базовый класс описывающий свойсва поля
@@ -19,7 +19,7 @@
         /// <summary>
         /// Тип размера поля
         /// </summary>
-        private TypeOfDimensionsField TypeOfDimensionsField = TypeOfDimensionsField.Small;
+        private readonly TypeOfDimensionsField TypeOfDimensionsField = TypeOfDimensionsField.Small;
 
         /// <summary>
         /// Количество ячеек по горизонтали

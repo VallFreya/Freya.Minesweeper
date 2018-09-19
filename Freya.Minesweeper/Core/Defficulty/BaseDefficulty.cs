@@ -1,4 +1,4 @@
-﻿using Freya.Minesweeper.Core.DimensionsField;
+﻿using Freya.Minesweeper.Core.DimentionsField;
 
 namespace Freya.Minesweeper.Core.Defficulty
 {

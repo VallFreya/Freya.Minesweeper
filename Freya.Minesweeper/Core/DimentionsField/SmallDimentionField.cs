@@ -1,4 +1,4 @@
-﻿namespace Freya.Minesweeper.Core.DimensionsField
+﻿namespace Freya.Minesweeper.Core.DimentionsField
 {
     public class SmallDimentionField : DimentionsFieldBase
     {
