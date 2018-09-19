@@ -28,30 +28,13 @@ namespace Freya.Minesweeper
             {
                 field.ShowAllMines();
                 Drawer.Draw(mainGrid, field, Click, RightClick);
-                MessageBoxResult messageBox = MessageBox.Show("Игра окончена. Начать сначала? Нет - выйти из игры", "Конец игры", MessageBoxButton.YesNo);
-                switch (messageBox)
-                {
-                    case MessageBoxResult.Yes:
-                        Run();
-                        return;
-                    case MessageBoxResult.No:
-                        Close();
-                        return;
-                }
+                OpenDialog("Конец игры", "Игра окончена. Начать сначала? Нет - выйти из игры");
             }
 
             if (field.IsWin())
             {
-                MessageBoxResult messageBox = MessageBox.Show("Победа. Начать сначала? Нет - выйти из игры", "Победа", MessageBoxButton.YesNo);
-                switch (messageBox)
-                {
-                    case MessageBoxResult.Yes:
-                        Run();
-                        return;
-                    case MessageBoxResult.No:
-                        Close();
-                        return;
-                }
+                OpenDialog("Победа", "Победа. Начать сначала? Нет - выйти из игры");
+                return;
             }
 
             field.ShowAllEmptyCells(button);
@@ -81,6 +64,20 @@ namespace Freya.Minesweeper
             Resources.Remove("field");
             Resources.Add("field", field);
             Drawer.Draw(mainGrid, field, Click, RightClick);
+        }
+
+        private void OpenDialog(string title, string text)
+        {
+            MessageBoxResult messageBox = MessageBox.Show(text, title, MessageBoxButton.YesNo);
+            switch (messageBox)
+            {
+                case MessageBoxResult.Yes:
+                    Run();
+                    return;
+                case MessageBoxResult.No:
+                    Close();
+                    return;
+            }
         }
     }
 }
