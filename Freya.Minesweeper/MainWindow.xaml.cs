@@ -12,9 +12,7 @@ namespace Freya.Minesweeper
         public MainWindow()
         {
             InitializeComponent();
-            var field = CreatorField.Create();
-            Resources.Add("field", field);
-            Drawer.Draw(mainGrid, field, Click, RightClick);
+            Run();
         }
 
         private void Click(object sender, RoutedEventArgs e)
@@ -34,10 +32,7 @@ namespace Freya.Minesweeper
                 switch (messageBox)
                 {
                     case MessageBoxResult.Yes:
-                        field = CreatorField.Create();
-                        Resources.Remove("field");
-                        Resources.Add("field", field);
-                        Drawer.Draw(mainGrid, field, Click, RightClick);
+                        Run();
                         return;
                     case MessageBoxResult.No:
                         Close();
@@ -51,10 +46,7 @@ namespace Freya.Minesweeper
                 switch (messageBox)
                 {
                     case MessageBoxResult.Yes:
-                        field = CreatorField.Create();
-                        Resources.Remove("field");
-                        Resources.Add("field", field);
-                        Drawer.Draw(mainGrid, field, Click, RightClick);
+                        Run();
                         return;
                     case MessageBoxResult.No:
                         Close();
@@ -80,6 +72,14 @@ namespace Freya.Minesweeper
                 cell.SetFlag();
             }
 
+            Drawer.Draw(mainGrid, field, Click, RightClick);
+        }
+
+        private void Run()
+        {
+            var field = CreatorField.Create();
+            Resources.Remove("field");
+            Resources.Add("field", field);
             Drawer.Draw(mainGrid, field, Click, RightClick);
         }
     }
