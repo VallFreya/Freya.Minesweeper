@@ -69,8 +69,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Difficulty\BaseDefficulty.cs" />
-    <Compile Include="Core\Difficulty\EasyDefficulty.cs" />
+    <Compile Include="Core\Defficulty\BaseDefficulty.cs" />
+    <Compile Include="Core\Defficulty\EasyDefficulty.cs" />
     <Compile Include="Core\DimensionsField\DimentionsFieldBase.cs" />
     <Compile Include="Core\DimensionsField\SmallDimentionField.cs" />
     <Compile Include="Core\Mines\MineBase.cs" />

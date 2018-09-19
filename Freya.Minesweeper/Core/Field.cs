@@ -14,8 +14,8 @@ namespace Freya.Minesweeper.Core
         public Field(int horisontalNumbersOfCells, int verticalyNumberOfCells)
         {
             Cells = new Cell[horisontalNumbersOfCells, verticalyNumberOfCells];
-            VerticalCount = verticalyNumberOfCells;
-            HorizontalCount = horisontalNumbersOfCells;
+            VerticalyCount = verticalyNumberOfCells;
+            HorisontalCount = horisontalNumbersOfCells;
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace Freya.Minesweeper.Core
             return Cells[x, y];
         }
 
-        public int VerticalCount { get; }
+        public int VerticalyCount { get; }
 
-        public int HorizontalCount { get; }
+        public int HorisontalCount { get; }
 
         public bool IsOutside(Cell cell)
         {
@@ -49,7 +49,7 @@ namespace Freya.Minesweeper.Core
                 return true;
             }
 
-            if (cell.X >= HorizontalCount || cell.Y >= VerticalCount)
+            if (cell.X >= HorisontalCount || cell.Y >= VerticalyCount)
             {
                 return true;
             }
@@ -88,9 +88,9 @@ namespace Freya.Minesweeper.Core
 
         public IEnumerable<Cell> GetAllCells()
         {
-            for (var x = 0; x < HorizontalCount; x++)
+            for (var x = 0; x < HorisontalCount; x++)
             {
-                for (int y = 0; y < VerticalCount; y++)
+                for (int y = 0; y < VerticalyCount; y++)
                 {
                     yield return GetCell(x, y);
                 }

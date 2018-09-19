@@ -15,48 +15,45 @@ namespace Freya.Minesweeper.Draw
         public static void Draw(UniformGrid grid, Field field, RoutedEventHandler clickMethod, MouseButtonEventHandler rightClickMethod)
         {
             grid.Children.Clear();
-            grid.Rows = field.VerticalCount;
-            grid.Columns = field.HorizontalCount;
+            grid.Rows = field.VerticalyCount;
+            grid.Columns = field.HorisontalCount;
 
-            for (int x = 0; x < field.HorizontalCount; x++)
+            var allCells = field.GetAllCells();
+            foreach (var cell in allCells)
             {
-                for (int y = 0; y < field.VerticalCount; y++)
+                var button = new MineButton()
                 {
-                    var cell = field.GetCell(x, y);
-                    var button = new MineButton()
-                    {
-                        Height = 30,
-                        Width = 30,
-                        X = x,
-                        Y = y
-                    };
+                    Height = 30,
+                    Width = 30,
+                    X = cell.X,
+                    Y = cell.Y
+                };
 
-                    if(cell.IsShow)
+                if (cell.IsShow)
+                {
+                    if (cell.Mine is MineBase)
                     {
-                        if(cell.Mine is MineBase)
-                        {
-                            button.Content = "*";
-                            button.Background = Brushes.IndianRed;
-                        }
-                        else
-                        {
-                            button.Content = cell.CountMineAround == 0 ? "" : cell.CountMineAround.ToString();
-                            button.Background = Brushes.Gray;
-                        }
+                        button.Content = "*";
+                        button.Background = Brushes.IndianRed;
                     }
-
-                    if(cell.Flag is Flag.Flag)
+                    else
                     {
-                        button.Content = "!";
+                        button.Content = cell.CountMineAround == 0 ? "" : cell.CountMineAround.ToString();
+                        button.Background = Brushes.Gray;
                     }
-
-                    button.Click += clickMethod;
-                    button.PreviewMouseRightButtonDown += rightClickMethod;
-                    grid.Children.Add(button);
-
-                    Grid.SetRow(button, y + 1);
-                    Grid.SetColumn(button, x);
                 }
+
+                if (cell.Flag is Flag.Flag)
+                {
+                    button.Content = "!";
+                }
+
+                button.Click += clickMethod;
+                button.PreviewMouseRightButtonDown += rightClickMethod;
+                grid.Children.Add(button);
+
+                Grid.SetRow(button, cell.Y + 1);
+                Grid.SetColumn(button, cell.X);
             }
         }
     }

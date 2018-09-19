@@ -1,6 +1,6 @@
 ﻿using Freya.Minesweeper.Core.DimensionsField;
 
-namespace Freya.Minesweeper.Core.Difficulty
+namespace Freya.Minesweeper.Core.Defficulty
 {
     public abstract class BaseDefficulty
     {
@@ -18,12 +18,12 @@ namespace Freya.Minesweeper.Core.Difficulty
         /// <summary>
         /// Сложность игры
         /// </summary>
-        private TypeOfDifficulty TypeOfDifficulty = TypeOfDifficulty.Easy;
+        private readonly TypeOfDifficulty TypeOfDifficulty = TypeOfDifficulty.Easy;
 
         /// <summary>
         /// Свойства поля
         /// </summary>
-        private DimentionsFieldBase Field = new SmallDimentionField();
+        private readonly DimentionsFieldBase Field = new SmallDimentionField();
 
         /// <summary>
         /// Количество мин

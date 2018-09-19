@@ -12,9 +12,9 @@ namespace Freya.Minesweeper.Logic
             var field = new Field(horisontalNumbersOfCells, verticalyNumberOfCells);
             var random = new Random();
             int filled = 0;
-            for(int x = 0; x < field.HorizontalCount; x++)
+            for(int x = 0; x < field.HorisontalCount; x++)
             {
-                for(int y = 0; y < field.VerticalCount; y++)
+                for(int y = 0; y < field.VerticalyCount; y++)
                 {
                     field.SetCell(new Cell(x, y));
                 }

@@ -16,7 +16,7 @@ namespace Freya.Minesweeper
         {
             InitializeComponent();
             var timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += new EventHandler(Timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
             Run();
@@ -90,7 +90,7 @@ namespace Freya.Minesweeper
             }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             Timer.Content = ++timeTicks;
         }
