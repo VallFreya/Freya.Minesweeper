@@ -24,29 +24,29 @@ namespace Freya.Minesweeper.Logic
 
         private static int GetCountMineAround(Field field, Cell cell)
         {
-            var minesAround = field.GetAllCellsAround( cell);
+            var minesAround = field.GetAllCellsAround(cell);
             var count = 0;
             foreach (var mine in minesAround)
             {
-                count += ExistMine(field, mine);
+                count = IsExistMine(field, mine) ? ++count : count;
             }
             
             return count;
         }
 
-        private static int ExistMine(Field field, Cell cell)
+        private static bool IsExistMine(Field field, Cell cell)
         {
             if (field.IsOutside(cell))
             {
-                return 0;
+                return false;
             }
             
             if (cell.Mine is MineBase)
             {
-                return 1;
+                return true;
             }
 
-            return 0;
+            return false;
         }
     }
 }
