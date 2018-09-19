@@ -12,12 +12,9 @@
             <RowDefinition Height="23*"/>
             <RowDefinition Height="270*"/>
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Right" Height="23" Content="0" VerticalAlignment="Top" Width="20" Grid.Row="0"/>
-        <Label HorizontalAlignment="Right" Height="23" Content="0" VerticalAlignment="Top" Width="20" Margin="0,0,20,0" Grid.Row="0"/>
-        <Label HorizontalAlignment="Right" Height="23" Content="0" VerticalAlignment="Top" Width="20" Margin="0,0,40,0" Grid.Row="0"/>
+        <Label Name="Timer" HorizontalAlignment="Right" Height="23" Content="0" VerticalAlignment="Top" Width="42" Grid.Row="0" FontFamily="Stencil" Background="White" />
 
-        <Label HorizontalAlignment="Left" Height="23" Content="0" VerticalAlignment="Top" Width="20" Grid.Row="0"/>
-        <Label HorizontalAlignment="Left" Height="23" Content="0" VerticalAlignment="Top" Width="20" Grid.Row="0" Margin="20,0,0,0"/>
+        <Label Name="CountMine" HorizontalAlignment="Left" Height="23" Content="0" VerticalAlignment="Top" Width="40" Grid.Row="0" FontFamily="Stencil"/>
         <UniformGrid Grid.Row="1" Name="mainGrid"></UniformGrid>
     </Grid>
 </Window>

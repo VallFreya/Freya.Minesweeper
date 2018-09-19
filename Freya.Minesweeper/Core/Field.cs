@@ -147,5 +147,12 @@ namespace Freya.Minesweeper.Core
                 }
             }
         }
+
+        public int GetNotSetFlagMines()
+        {
+            var mines = GetAllCellsInMines();
+            var allMines = mines.Count();
+            return allMines - GetAllCells().Where(x => x.Flag is Flag.Flag).Count();
+        }
     }
 }

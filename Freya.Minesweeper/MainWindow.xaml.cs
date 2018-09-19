@@ -3,15 +3,22 @@ using Freya.Minesweeper.Core.Mines;
 using Freya.Minesweeper.CustomUIElement;
 using Freya.Minesweeper.Draw;
 using Freya.Minesweeper.Logic;
+using System;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Freya.Minesweeper
 {
     public partial class MainWindow : Window
     {
+        private int timeTicks = 0;
         public MainWindow()
         {
             InitializeComponent();
+            var timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
             Run();
         }
 
@@ -55,6 +62,7 @@ namespace Freya.Minesweeper
                 cell.SetFlag();
             }
 
+            CountMine.Content = field.GetNotSetFlagMines();
             Drawer.Draw(mainGrid, field, Click, RightClick);
         }
 
@@ -64,6 +72,8 @@ namespace Freya.Minesweeper
             Resources.Remove("field");
             Resources.Add("field", field);
             Drawer.Draw(mainGrid, field, Click, RightClick);
+            timeTicks = 0;
+            CountMine.Content = field.GetNotSetFlagMines();
         }
 
         private void OpenDialog(string title, string text)
@@ -78,6 +88,11 @@ namespace Freya.Minesweeper
                     Close();
                     return;
             }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Timer.Content = ++timeTicks;
         }
     }
 }
