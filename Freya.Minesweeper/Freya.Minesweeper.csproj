@@ -77,7 +77,7 @@
     <Compile Include="Core\Mines\CommonMine.cs" />
     <Compile Include="Core\TypeOfDimensionsField.cs" />
     <Compile Include="Core\TypeOfDifficulty.cs" />
-    <Compile Include="Core\TypeOfMine.cs" />
+    <Compile Include="Core\TypesOfMines.cs" />
     <Compile Include="Draw\Drawer.cs" />
     <Compile Include="Logic\BaseWayPlacementMine.cs" />
     <Compile Include="Logic\CreatorField.cs" />

@@ -36,7 +36,10 @@ namespace Freya.Minesweeper
                 field.ShowAllMines();
                 Drawer.Draw(mainGrid, field, Click, RightClick);
                 OpenDialog("Конец игры", "Игра окончена. Начать сначала? Нет - выйти из игры");
+                return;
             }
+            
+            field.ShowAllEmptyCells(button);
 
             if (field.IsWin())
             {
@@ -44,7 +47,6 @@ namespace Freya.Minesweeper
                 return;
             }
 
-            field.ShowAllEmptyCells(button);
             Drawer.Draw(mainGrid, field, Click, RightClick);
         }
 
@@ -52,6 +54,13 @@ namespace Freya.Minesweeper
         {
             var button = sender as MineButton;
             var field = TryFindResource("field") as Field;
+
+            if (field.IsWin())
+            {
+                OpenDialog("Победа", "Победа. Начать сначала? Нет - выйти из игры");
+                return;
+            }
+
             var cell = field.GetCell(button.X, button.Y);
             if(cell.Flag is Flag.Flag)
             {

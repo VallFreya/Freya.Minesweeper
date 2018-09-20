@@ -6,7 +6,7 @@
         {
         }
 
-        public MineBase(TypeOfMine typeOfMine)
+        public MineBase(TypesOfMines typeOfMine)
         {
             TypeOfMine = typeOfMine;
         }
@@ -14,6 +14,6 @@
         /// <summary>
         /// Тип тип мины
         /// </summary>
-        public TypeOfMine TypeOfMine { get; private set; } = TypeOfMine.Common;
+        public TypesOfMines TypeOfMine { get; private set; } = TypesOfMines.Common;
     }
 }

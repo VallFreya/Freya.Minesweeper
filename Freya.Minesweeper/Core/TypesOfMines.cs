@@ -3,7 +3,7 @@
     /// <summary>
     /// Список типов мин
     /// </summary>
-    public enum TypeOfMine
+    public enum TypesOfMines
     {
         /// <summary>
         /// Обычная мина

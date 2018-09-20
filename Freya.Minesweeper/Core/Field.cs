@@ -124,10 +124,10 @@ namespace Freya.Minesweeper.Core
 
         public bool IsWin()
         {
-            var allMines = GetAllCellsInMines();
-            foreach(var mine in allMines)
+            var allCells = GetAllCells();
+            foreach(var cell in allCells)
             {
-                if (!(mine.Flag is Flag.Flag))
+                if (!(cell.Mine is MineBase) && !cell.IsShow)
                 {
                     return false;
                 }
@@ -136,7 +136,7 @@ namespace Freya.Minesweeper.Core
             return true;
         }
 
-        public IEnumerable<Cell> GetAllCellsInMines()
+        public IEnumerable<Cell> GetAllMines()
         {
             var allCells = GetAllCells();
             foreach (var cell in allCells)
@@ -150,7 +150,7 @@ namespace Freya.Minesweeper.Core
 
         public int GetNotSetFlagMines()
         {
-            var mines = GetAllCellsInMines();
+            var mines = GetAllMines();
             var allMines = mines.Count();
             return allMines - GetAllCells().Where(x => x.Flag is Flag.Flag).Count();
         }
