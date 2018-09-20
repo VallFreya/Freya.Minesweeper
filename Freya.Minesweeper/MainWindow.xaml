@@ -12,7 +12,7 @@
             <RowDefinition Height="23*"/>
             <RowDefinition Height="270*"/>
         </Grid.RowDefinitions>
-        <Label Name="Timer" HorizontalAlignment="Right" Height="23" Content="0" VerticalAlignment="Top" Width="42" Grid.Row="0" FontFamily="Stencil" Background="White" />
+        <Label Name="LabelTimer" HorizontalAlignment="Right" Height="23" Content="0" VerticalAlignment="Top" Width="42" Grid.Row="0" FontFamily="Stencil" Background="White" />
 
         <Label Name="CountMine" HorizontalAlignment="Left" Height="23" Content="0" VerticalAlignment="Top" Width="40" Grid.Row="0" FontFamily="Stencil"/>
         <UniformGrid Grid.Row="1" Name="mainGrid"></UniformGrid>

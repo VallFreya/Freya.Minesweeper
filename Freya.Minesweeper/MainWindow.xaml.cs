@@ -12,13 +12,13 @@ namespace Freya.Minesweeper
     public partial class MainWindow : Window
     {
         private int timeTicks = 0;
+        private DispatcherTimer Timer;
         public MainWindow()
         {
             InitializeComponent();
-            var timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(Timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Start();
+            Timer = new DispatcherTimer();
+            Timer.Tick += new EventHandler(TimerTick);
+            Timer.Interval = new TimeSpan(0, 0, 1);
             Run();
         }
 
@@ -26,7 +26,10 @@ namespace Freya.Minesweeper
         {
             var button = sender as MineButton;
             var field = TryFindResource("field") as Field;
-            if(field.GetCell(button.X, button.Y).Flag is Flag.Flag)
+
+            Timer.Start();
+
+            if (field.GetCell(button.X, button.Y).Flag is Flag.Flag)
             {
                 return;
             }
@@ -55,6 +58,8 @@ namespace Freya.Minesweeper
             var button = sender as MineButton;
             var field = TryFindResource("field") as Field;
 
+            Timer.Start();
+
             if (field.IsWin())
             {
                 OpenDialog("Победа", "Победа. Начать сначала? Нет - выйти из игры");
@@ -82,11 +87,13 @@ namespace Freya.Minesweeper
             Resources.Add("field", field);
             Drawer.Draw(mainGrid, field, Click, RightClick);
             timeTicks = 0;
+            LabelTimer.Content = timeTicks;
             CountMine.Content = field.GetNotSetFlagMines();
         }
 
         private void OpenDialog(string title, string text)
         {
+            Timer.Stop();
             MessageBoxResult messageBox = MessageBox.Show(text, title, MessageBoxButton.YesNo);
             switch (messageBox)
             {
@@ -99,9 +106,9 @@ namespace Freya.Minesweeper
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void TimerTick(object sender, EventArgs e)
         {
-            Timer.Content = ++timeTicks;
+            LabelTimer.Content = ++timeTicks;
         }
     }
 }
