@@ -112,22 +112,25 @@ namespace Freya.Minesweeper.Core
                 if (cell.CountMineAround == 0 || cell.Mine is MineBase)
                 {
                     listForOpen.AddRange(GetAllCellsAround(cell)
-                        .Where(c => c.IsShow == false 
-                                && c.Mine is null
-                                && c.Flag is Flag.Empty)
-                                // позоляет избежать поторного добаления одной и той же ячейки
-                                .Where(m => 
+                        .Where(c => {
+                            // позоляет избежать поторного добаления одной и той же ячейки
+                            foreach (var elementForOpen in listForOpen)
+                            {
+                                if (c.X == elementForOpen.X && c.Y == elementForOpen.Y)
                                 {
-                                    foreach(var elementForOpen in listForOpen)
-                                    {
-                                        if(m.X == elementForOpen.X && m.Y == elementForOpen.Y)
-                                        {
-                                            return false;
-                                        }
-                                    }
+                                    return false;
+                                }
+                            }
 
-                                    return true;
-                                }));
+                            if(c.IsShow
+                               || c.Mine != null
+                               || c.Flag is Flag.Flag)
+                            {
+                                return false;
+                            }
+
+                            return true;
+                        }));
                 }
 
                 cell.Show();
