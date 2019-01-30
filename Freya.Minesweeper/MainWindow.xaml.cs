@@ -67,15 +67,20 @@ namespace Freya.Minesweeper
             }
 
             var cell = field.GetCell(button.X, button.Y);
-            if(cell.Flag is Flag.Flag)
-            {
-                cell.SetEmptyFlag();
-            }
-            else
-            {
-                cell.SetFlag();
-            }
 
+            // запрещает ставить какие-либо знаки на уже открытые ячейки
+            if (!cell.IsShow)
+            {
+                if (cell.Flag is Flag.Flag)
+                {
+                    cell.SetEmptyFlag();
+                }
+                else
+                {
+                    cell.SetFlag();
+                }
+            }
+            
             CountMine.Content = field.GetNotSetFlagMines();
             Drawer.Draw(mainGrid, field, Click, RightClick);
         }
