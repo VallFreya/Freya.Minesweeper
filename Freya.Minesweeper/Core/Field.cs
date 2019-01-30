@@ -114,7 +114,20 @@ namespace Freya.Minesweeper.Core
                     listForOpen.AddRange(GetAllCellsAround(cell)
                         .Where(c => c.IsShow == false 
                                 && c.Mine is null
-                                && c.Flag is Flag.Empty));
+                                && c.Flag is Flag.Empty)
+                                // позоляет избежать поторного добаления одной и той же ячейки
+                                .Where(m => 
+                                {
+                                    foreach(var elementForOpen in listForOpen)
+                                    {
+                                        if(m.X == elementForOpen.X && m.Y == elementForOpen.Y)
+                                        {
+                                            return false;
+                                        }
+                                    }
+
+                                    return true;
+                                }));
                 }
 
                 cell.Show();
